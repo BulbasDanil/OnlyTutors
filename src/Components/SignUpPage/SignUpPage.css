@@ -1,0 +1,44 @@
+.logo-image img {
+    width: 19.9vw;
+    border: black 1px solid;
+}
+
+.logo-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.signup {
+    margin-top: 2.5vh;
+    width: 25vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup input {
+    height: 70%;
+    padding: 1vh;
+    margin-right: 1vw;
+}
+
+.signup h2 {
+    margin-left: 1vw;
+}
+
+.username input {
+    margin-left: 3vw;
+}
+
+.signup button {
+    margin-top: 1.3vh;
+    width: 20vw;
+    font-size: large;
+}
+
+.sign {
+    margin-top: 0.2vh;
+}
