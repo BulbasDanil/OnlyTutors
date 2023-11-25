@@ -110,3 +110,21 @@ button {
     box-shadow: inset 0 0 0 50px #93b3eb;
     cursor: pointer;
 }
+
+.students {
+    display: flex;
+    justify-content: center;
+    margin-top: 0vh;
+    overflow: hidden;
+    align-self: center;
+    width: 90%;
+}
+
+.students img {
+    border: black 2px solid;
+    background-color: white;
+    width: 10%;
+    object-fit: cover;
+    object-position: center;
+    margin-left: 0.3vw;
+}

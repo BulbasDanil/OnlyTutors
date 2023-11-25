@@ -3,6 +3,7 @@
 .SearchBar {
     display: flex;
     justify-content: center;
+    align-content: center;
     margin-top: 4.5vh;
     text-align: center;
 }
@@ -48,3 +49,8 @@
     box-shadow: inset 0 0 0 50px #93b3eb;
 }
 
+.switch-label-text {
+    margin-top: 2.5px;
+    margin-right: 1.5vw;
+    margin-left: 0.2vw;
+}

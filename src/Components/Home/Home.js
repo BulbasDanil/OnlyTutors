@@ -1,5 +1,5 @@
 import './Home.css';
-import {SearchBar} from '../SearchBar/SearchBar';
+import {SearchBarClasses} from '../SearchBarClasses/SearchBarClasses';
 import {ClassTile} from '../ClassTile/ClassTile';
 import {NewProject} from '../NewClass/NewClass';
 import {React, useState, useEffect} from 'react';
@@ -26,7 +26,7 @@ export const Home = () => {
     <div className="body">
 
       <div className="content">
-        <SearchBar />
+        <SearchBarClasses />
         <div className="projects">
             {projects.map((item) => {
               return (
@@ -48,9 +48,12 @@ export const Home = () => {
           
         </div>
       </div>
-      <div className='new-project'>
-            <NewProject />
-      </div>
+      { //localStorage.setItem('UserType', "tutor/student"); 
+      localStorage.getItem('UserType') === "tutor" && (
+        <div className='new-project'>
+              <NewProject />
+        </div>
+      )}
     </div>
   );
 }

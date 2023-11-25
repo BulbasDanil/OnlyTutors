@@ -1,5 +1,5 @@
 import './TutorsPage.css';
-import {SearchBar} from '../SearchBar/SearchBar';
+import {SearchBarTutors} from '../SearchBarTutors/SearchBarTutors';
 import profile_pic from '../files/Default_pfp.png';
 import {TutorTile} from '../TutorTile/TutorTile';
 import {NewProject} from '../NewClass/NewClass';
@@ -27,7 +27,7 @@ export const TutorsPage = () => {
     <div className="body">
 
       <div className="content">
-        <SearchBar />
+        <SearchBarTutors />
         <div className="tutors">
             {projects.map((item) => {
               return (
@@ -48,9 +48,6 @@ export const TutorsPage = () => {
           </div> 
           
         </div>
-      </div>
-      <div className='new-project'>
-            <NewProject />
       </div>
     </div>
   );

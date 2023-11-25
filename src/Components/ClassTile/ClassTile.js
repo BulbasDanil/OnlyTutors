@@ -1,5 +1,6 @@
 import './ClassTile.css';
 import {React, useState} from 'react';
+import photo from '../files/Default_pfp.png';
 
 export const ClassTile = (prop) => {
     const [press, setPress] = useState(false);
@@ -65,6 +66,13 @@ export const ClassTile = (prop) => {
                 <h2>{prop.project.description}</h2>
             </div>
             
+            <div className = "students">
+                <img src={photo} alt="kreepochek"/>
+                <img src={photo} alt="kreepochek"/>
+                <img src={photo} alt="kreepochek"/>
+
+            </div>
+
             <div className="apply">
                 <button>Register for Class</button>
             </div>
