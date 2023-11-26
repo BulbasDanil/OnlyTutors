@@ -1,4 +1,4 @@
- .newProjectWindow {
+.newProjectWindow {
     display: none;
     z-index: 2;
     width: 25vw;
@@ -40,10 +40,15 @@
 }
 
 
-.name-textarea, .description-textarea {
+.name-textarea, .description-textarea, .select-container {
     display: flex;
     flex-direction: column;
     align-items: center; 
+}
+
+.name-textarea input {
+    width: 15vw;
+    text-align: center;
 }
 
 .newProjectWindow label{

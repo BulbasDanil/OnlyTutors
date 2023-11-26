@@ -1,6 +1,5 @@
 import './NewClass.css';
 import {React, useState} from 'react';
-import Select from 'react-select'
 
 const all_options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -48,6 +47,11 @@ export const NewProject = () => {
         })
       }
 
+    const subjectOptions = [
+        'Programming', 'Calculus', 'English', 'Statistics', 'Chemistry',
+        'Physics'
+    ];
+
     return (
         <div>
             <div className='newProjectBtn' id='newProjectBtn'>
@@ -62,19 +66,31 @@ export const NewProject = () => {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='name-textarea'>
-                        <label hlmlfor="name">How do you want to name your project?</label>
-                        <textarea id='name' placeholder="Name of your project" name="name" 
+                        <label hlmlfor="name">How do you want to name your class?</label>
+                        <textarea id='name' placeholder="Name of your class" name="name" 
                                     required rows = {1} cols ={45} maxLength={25}></textarea>
                     </div>
+                    <div className="select-container">
+                        <label>What is the subject of the class?</label>
+                            <select name="selectedColor">
+                                {subjectOptions.map((subject) => (
+                                    <option key={subject} value={subject}>
+                                    {subject}
+                                    </option>
+                                ))}
+                            </select>
+                    </div>
+                    <div className='name-textarea'>
+                        <label hlmlfor="date">When your class is happening?</label>
+                        <input type="date" name="date"/>
+                    </div>
+
                     <div className='description-textarea'>
                         <label hlmlfor="description">What is your project about and who are you looking for?</label>
                         <textarea id='description' placeholder="Brifly describe your goals and what you look for from an applicant" name="description" 
                                     required rows = {6} cols ={55} maxLength={400}></textarea>
                     </div>
-                    <div className='select-container'>
-                        <Select options={all_options} onChange={handleOptions} value={option.label} isMulti maxMenuHeight={150} name='skills' id='Skills'/>
-                            
-                    </div>
+                    
                     <select multiple={true} value={option} style={{display: 'none'}}/>
                     <div className='submit-button-container'>
                         <button type='submit' className="submit-button">Submit your project</button> 
@@ -84,3 +100,4 @@ export const NewProject = () => {
         </div>
     )
 }
+
