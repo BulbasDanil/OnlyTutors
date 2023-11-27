@@ -57,13 +57,16 @@ export const ClassTile = (prop) => {
     return (
         <div className='outer'>
             <div className="border title">
-                <h1>{prop.project.name}</h1>
+                <h1>{prop.lesson.name}</h1>
             </div>
             <div className='border subject'>
-                <h1>{prop.project.subject}</h1>
+                <h1>{prop.lesson.subject}</h1>
+            </div>
+            <div className='border subject'>
+                <h1>{prop.lesson.time}</h1>
             </div>
             <div className="border description">
-                <h2>{prop.project.description}</h2>
+                <h2>{prop.lesson.description}</h2>
             </div>
             
             <div className = "students">
