@@ -8,26 +8,25 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 export const LoginPage = () => {
     const history = useHistory();
 
-
     function handleSubmit (event) {
         event.preventDefault();
     
-        console.log(JSON.stringify({id:0, username:'', password: event.target.password.value, firstName:'', lastName:'', phone:'', email:event.target.email.value,linkedIn:'', gitHub:'',imagePath:'', bio:'',experience:'',skills:[{}]}));
-        
-
-        fetch('http://localhost:5000/Users/login', {
-          method: 'POST',
+        fetch(`https://localhost:7185/api/users/${event.target.email.value}/${event.target.password.value}`, {
+          method: 'GET',
           headers: {"Content-Type":'application/json'},
-          body: JSON.stringify({id:0, username:'', password: event.target.password.value, firstName:'', lastName:'', phone:'', email:event.target.email.value,linkedIn:'', gitHub:'',imagePath:'', bio:'',experience:'',skills:[{}]}),
         }).then(response => response.json()).then(responseJson =>  {
     
-            if(responseJson.password === event.target.password.value)
+            if(responseJson.userId != -1)
             {
-                localStorage.setItem("email",event.target.email.value);
+                localStorage.setItem("UserId",responseJson.userId);
+                localStorage.setItem("UserType",responseJson.userType);
                 history.push("/home");
             }
             else
-                alert("Wrong Password");
+            {
+              alert("Wrong Password");
+            }
+                
         });
     }
 

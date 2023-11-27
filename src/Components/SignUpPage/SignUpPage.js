@@ -10,23 +10,13 @@ export const SignUpPage = () => {
 
     function handleSubmit (event) {
         event.preventDefault();
-    
-        console.log(JSON.stringify({id:0, username:'', password: event.target.password.value, firstName:'', lastName:'', phone:'', email:event.target.email.value,linkedIn:'', gitHub:'',imagePath:'', bio:'',experience:'',skills:[{}]}));
-        
 
-        fetch('http://localhost:5000/Users/login', {
+        fetch('https://localhost:7185/api/users', {
           method: 'POST',
           headers: {"Content-Type":'application/json'},
-          body: JSON.stringify({id:0, username:'', password: event.target.password.value, firstName:'', lastName:'', phone:'', email:event.target.email.value,linkedIn:'', gitHub:'',imagePath:'', bio:'',experience:'',skills:[{}]}),
-        }).then(response => response.json()).then(responseJson =>  {
-    
-            if(responseJson.password === event.target.password.value)
-            {
-                localStorage.setItem("email",event.target.email.value);
-                history.push("/home");
-            }
-            else
-                alert("Wrong Password");
+          body: JSON.stringify({id:0, name:event.target.fname.value, surname: event.target.lname.value, email: event.target.email.value, phoneNumber: event.target.phone.value, password:event.target.password.value, dateOfBirth:"1980-01-02T00:00:00", rating:0.0,imagePath:"default"}),
+        }).then(response => response.json()).then(responseJson =>  {    
+            history.push("/");
         });
     }
 
