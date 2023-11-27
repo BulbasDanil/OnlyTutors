@@ -6,6 +6,7 @@ import {NewProject} from '../NewClass/NewClass';
 import {React, useState, useEffect} from 'react';
 
 export const TutorsPage = () => {
+  localStorage.setItem("ProfileId", localStorage.getItem("UserId"));
   const [projects, setProjects] = useState([]);
   
     useEffect(() => {
@@ -41,7 +42,7 @@ export const TutorsPage = () => {
             <TutorTile tutor = {{name: 'Yaroslav ZZZ', photo: {profile_pic}, description: 'proper evening routine with bong fifa chess and weed 69$/gramm'}}/>
           </div> 
           <div className = "item">
-            <TutorTile tutor = {{name: 'Sex instructor', photo: {profile_pic}, description: 'Podnyal pripodnyal vzyal za ruku opustil podoshel pripodnyal vzyal podnyal'}}/>
+            <TutorTile tutor = {{name: 'Sex instructor', userid: 101, photo: {profile_pic}, description: 'Podnyal pripodnyal vzyal za ruku opustil podoshel pripodnyal vzyal podnyal'}}/>
           </div> 
           <div className = "item">
             <TutorTile tutor = {{name: 'curse 666', photo: profile_pic, description: 'a mozhno zaiti k tebe v kvartiry: yes or yes'}}/>

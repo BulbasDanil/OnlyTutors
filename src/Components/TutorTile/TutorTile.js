@@ -1,9 +1,13 @@
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import './TutorTile.css';
 import {React, useState} from 'react';
 
 export const TutorTile = (prop) => {
     const [press, setPress] = useState(false);
 
+    function handleClick() {
+        localStorage.setItem("ProfileId", prop.tutor.userid);
+    }
 
     return (
         <div className='outer'>
@@ -18,7 +22,9 @@ export const TutorTile = (prop) => {
             </div>
             
             <div className="apply">
-                <button>View Tutor's Full Profile</button>
+                <NavLink to='/profile'>
+                    <button onClick={handleClick} >View Tutor's Full Profile</button>
+                </NavLink>
             </div>
         </div>
     )

@@ -6,15 +6,80 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const SignUpPage = () => {
     const history = useHistory();
+    var type = "";
 
+    function setStudent() {
+      type = "student";
+    }
 
-    function handleSubmit (event) {
+    function setTutor() {
+      type = "tutor";
+    }
+
+    function handleSubmit(event) {
+      if (type === "student") {
+        handleSubmitStudent(event);
+      } else {
+        handleSubmitTutor(event);
+      }
+    }
+
+    function hash_password(password) {
+      let hash = 0;
+
+      if (password.length === 0) {
+        return hash;
+      }
+    
+      for (let i = 0; i < password.length; i++) {
+        const char = password.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+      }
+    
+      const hashedString = hash.toString(36);
+      return hashedString;
+    }
+
+    function handleSubmitStudent (event) {
         event.preventDefault();
 
-        fetch('https://localhost:7185/api/users', {
+        fetch('http://localhost:5000/api/students', {
           method: 'POST',
           headers: {"Content-Type":'application/json'},
-          body: JSON.stringify({id:0, name:event.target.fname.value, surname: event.target.lname.value, email: event.target.email.value, phoneNumber: event.target.phone.value, password:event.target.password.value, dateOfBirth:"1980-01-02T00:00:00", rating:0.0,imagePath:"default"}),
+          body: JSON.stringify({id:0,
+            name:event.target.fname.value,
+            surname: event.target.lname.value,
+            email: event.target.email.value,
+            phoneNumber: event.target.phone.value,
+            password: hash_password(event.target.password.value),
+            dateOfBirth:"1980-01-02T00:00:00",
+            rating:0.0,
+            imagePath:"default",
+            highestLevelOfEducation: "",
+          }),
+        }).then(response => response.json()).then(responseJson =>  {    
+            history.push("/");
+        });
+    }
+
+    function handleSubmitTutor (event) {
+        event.preventDefault();
+
+        fetch('http://localhost:5000/api/tutors', {
+          method: 'POST',
+          headers: {"Content-Type":'application/json'},
+          body: JSON.stringify({id:0,
+            name:event.target.fname.value,
+            surname: event.target.lname.value,
+            email: event.target.email.value,
+            phoneNumber: event.target.phone.value,
+            password: hash_password(event.target.password.value),
+            dateOfBirth:"1980-01-02T00:00:00",
+            rating:0.0,
+            imagePath:"default",
+            description: "",
+            experience: "",
+          }),
         }).then(response => response.json()).then(responseJson =>  {    
             history.push("/");
         });
@@ -27,7 +92,7 @@ export const SignUpPage = () => {
           <div className='logo-image'>
             <img src={logo} alt='Find-a-Bull logo'/>
           </div>
-          <form onSubmit={handleSubmit} method='POST' action='http://localhost:5000/users/'>
+          <form onSubmit={handleSubmit}>
 
             <div className='item signup username'>
                 <h2>First name:</h2>
@@ -54,10 +119,10 @@ export const SignUpPage = () => {
                 <input placeholder='your password' name="password" type='password' required></input>
             </div>
             <div className='login'>
-                <button type='submit' className="submit-button">Sign Up as Student</button>
+                <button type='submit' className="submit-button" onClick={setStudent}>Sign Up as Student</button>
             </div>
             <div className='login sign'>
-                <button type='submit' className="submit-button">Sign Up as Tutor</button>
+                <button type='submit' className="submit-button" onClick={setTutor}>Sign Up as Tutor</button>
             </div>
             <NavLink to='/'>
               <div className='login sign'>

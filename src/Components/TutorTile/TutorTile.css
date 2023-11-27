@@ -80,6 +80,10 @@ button {
     bottom: 3vh;
 }
 
+.apply a {
+    margin-left: -18vw;
+}
+
 .apply button {
     position: absolute;
     bottom: 0px;

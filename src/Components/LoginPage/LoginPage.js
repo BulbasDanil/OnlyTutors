@@ -8,10 +8,26 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 export const LoginPage = () => {
     const history = useHistory();
 
+    function hash_password(password) {
+      let hash = 0;
+
+      if (password.length === 0) {
+        return hash;
+      }
+    
+      for (let i = 0; i < password.length; i++) {
+        const char = password.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+      }
+    
+      const hashedString = hash.toString(36);
+      return hashedString;
+    }
+
     function handleSubmit (event) {
         event.preventDefault();
     
-        fetch(`https://localhost:7185/api/users/${event.target.email.value}/${event.target.password.value}`, {
+        fetch(`http://localhost:5000/api/users/${event.target.email.value}/${hash_password(event.target.password.value)}`, {
           method: 'GET',
           headers: {"Content-Type":'application/json'},
         }).then(response => response.json()).then(responseJson =>  {
@@ -20,6 +36,7 @@ export const LoginPage = () => {
             {
                 localStorage.setItem("UserId",responseJson.userId);
                 localStorage.setItem("UserType",responseJson.userType);
+                localStorage.setItem("ProfileId",responseJson.userId);
                 history.push("/home");
             }
             else

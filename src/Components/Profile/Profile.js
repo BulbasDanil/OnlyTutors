@@ -9,7 +9,7 @@ export const Profile = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/Users/email?email=${localStorage.getItem("email").replace("@","%40")}`).then(response => {
+    fetch(`http://localhost:5000/api/${localStorage.getItem('UserType')+"s"}/${localStorage.getItem("ProfileId")}`).then(response => {
         return response.json()
       }).then(jsonResponse => {
         if(!jsonResponse) {
@@ -22,7 +22,8 @@ export const Profile = () => {
   }, []);
 
   const handleLoad = () => {
-    fetch(`http://localhost:5000/Users/email?email=${localStorage.getItem("email").replace("@","%40")}`).then(response => {
+    return;
+    fetch(`http://localhost:5000/api/tutors/${localStorage.getItem("UserId")}`).then(response => {
         return response.json()
       }).then(jsonResponse => {
         if(!jsonResponse) {
@@ -35,20 +36,34 @@ export const Profile = () => {
   }
 
   const displayInfo = () => {
-    if(data.profile == 1) {
+    if(localStorage.getItem('UserType') === "tutor") {
       return (
-        <div className='skills profile-skills'>
+      <div>
+        <div className='item profile-description'>
+            <h2>{data.description}</h2>
+        </div>
+        <div className='item profile-experience'>
+            <h2>{data.experience}</h2>
+        </div>
+        {/* <div className='skills profile-skills'>
           <button>Class 1</button>
           <button>Class 2</button>
-        </div>
+        </div> */}
+      </div>
+        
       )
     }
     else {
       return (
-        <div className='skills profile-skills'>
-          <button>Class 3</button>
-          <button>Class 4</button>
+        <div>
+          <div className='item profile-experience'>
+            <h2>{data.highestLevelOfEducation}</h2>
+          </div>
         </div>
+        // <div className='skills profile-skills'>
+        //   <button>Class 3</button>
+        //   <button>Class 4</button>
+        // </div>
       )
     }
   }
@@ -65,18 +80,16 @@ export const Profile = () => {
           </div>
 
           <div className='item profile-name'>
-            <h2>{data.username}</h2>
+            <h2>{(data.name + " " + data.surname)}</h2>
           </div>
 
           <div className='item profile-contact'>
-            <h2>Contacts:<br/>Email: {data.email}<br/> Phone: {data.phone}<br/> Date of Birth: {data.dob} <br/> </h2>
+            <h2>Contacts:<br/>Email: {data.email}<br/> Phone: {data.phone}<br/> Date of Birth: {data.dateOfBirth} <br/> </h2>
           </div>
         </div>
         <div className='row2'>
-          <div className='item profile-description'>
-            <h2>{data.bio}</h2>
-          </div>
-          {displayInfo}
+
+          {displayInfo()}
           
           <div className='item profile-experience'>
             <h2>{data.experience}</h2>
