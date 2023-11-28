@@ -62,7 +62,7 @@ export const ClassTile = (prop) => {
                 <h1>{prop.lesson.name}</h1>
             </div>
             <div className='border subject'>
-                <h1>{prop.lesson.subject}</h1>
+                <h1>{prop.lesson.subjectname}</h1>
             </div>
             <div className='border subject'>
                 <h1>{prop.lesson.time}</h1>
