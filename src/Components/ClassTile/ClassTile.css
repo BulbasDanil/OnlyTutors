@@ -128,3 +128,7 @@ button {
     object-position: center;
     margin-left: 0.3vw;
 }
+
+.my-class {
+    background-color: black;
+}

@@ -42,3 +42,7 @@
     bottom: 0.3vh;
     right: 0.5vw;
   }
+
+  .new-color {
+    background-color: rgba(69, 240, 103, 0.425) !important;
+  }

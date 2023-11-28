@@ -32,7 +32,7 @@ export const LoginPage = () => {
           headers: {"Content-Type":'application/json'},
         }).then(response => response.json()).then(responseJson =>  {
     
-            if(responseJson.userId != -1)
+            if(responseJson.userId !== -1)
             {
                 localStorage.setItem("UserId",responseJson.userId);
                 localStorage.setItem("UserType",responseJson.userType);

@@ -28,22 +28,21 @@ export const NewProject = () => {
         document.getElementById('closeBtn').style.display = "none";
     }
 
-    const handleOptions = (options) => {
-        // document.getElementById('skills').value = options;
-        // console.log(document.getElementById('skills').value);
-        console.log(document.getElementById('Skills').value);
-        setOption(() => {
-            return [options];
-        })
-    }
 
     function handleSubmit (event) {  
         
         let form = event.target;
-        fetch('http://localhost:5000/Projects', {
+        fetch('http://localhost:5000/api/lessons/addlesson', {
           method: 'POST',
           headers: {"Content-Type":'application/json'},
-          body: JSON.stringify({id:0, name:form.name.value,description: form.description.value,users:[{}],skills:[{}]}),
+          body: JSON.stringify({id:0,
+            name:form.name.value,
+            description: form.description.value,
+            // subject: form.selectedSubject.value,
+            subjectId: 1,
+            time: form.date.value,
+            tutorid: parseInt(localStorage.getItem("UserId"), 10),
+        }),
         })
       }
 
@@ -72,7 +71,7 @@ export const NewProject = () => {
                     </div>
                     <div className="select-container">
                         <label>What is the subject of the class?</label>
-                            <select name="selectedColor">
+                            <select name="selectedSubject">
                                 {subjectOptions.map((subject) => (
                                     <option key={subject} value={subject}>
                                     {subject}
@@ -82,18 +81,18 @@ export const NewProject = () => {
                     </div>
                     <div className='name-textarea'>
                         <label hlmlfor="date">When your class is happening?</label>
-                        <input type="date" name="date"/>
+                        <input type="datetime-local" name="date"/>
                     </div>
 
                     <div className='description-textarea'>
-                        <label hlmlfor="description">What is your project about and who are you looking for?</label>
-                        <textarea id='description' placeholder="Brifly describe your goals and what you look for from an applicant" name="description" 
+                        <label hlmlfor="description">What is your class about and who are you looking for?</label>
+                        <textarea id='description' placeholder="Brifly describe the topic covered during the class" name="description" 
                                     required rows = {6} cols ={55} maxLength={400}></textarea>
                     </div>
                     
                     <select multiple={true} value={option} style={{display: 'none'}}/>
                     <div className='submit-button-container'>
-                        <button type='submit' className="submit-button">Submit your project</button> 
+                        <button type='submit' className="submit-button">Create your class</button> 
                     </div>
                 </form>
             </div> 

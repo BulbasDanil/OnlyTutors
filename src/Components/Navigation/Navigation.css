@@ -23,7 +23,8 @@
   margin: 0px;
   font-size: 5vh;
   text-decoration: none!important;
-  color: black;
+  color: white;
+  -webkit-text-stroke: 1.1px black;
 }
 
 .nav h1:visited, h1:link {
@@ -35,6 +36,7 @@
   font-size: 3.5vh;
   margin-left: 0.7vw;
   margin-right: -0.3vw;
+  font-weight: bold;
 }
 
 .nav-item {

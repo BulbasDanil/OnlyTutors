@@ -4,60 +4,20 @@ import photo from '../files/Default_pfp.png';
 
 export const ClassTile = (prop) => {
     const [press, setPress] = useState(false);
-    const message = 'Please tell us about yourself and your skills, and we will forward the information to the project founder.';
 
+    
+    // if(prop.lesson.students.some(user => user.id === localStorage.getItem("UserId"))) {
+    // function checkMyClass() {
+    //     if(prop.lesson.students.some(user => user.id === 131)) {
+    //         console.log("class changed");
+    //         document.getElementById("my-class").style.backgroundColor = "red";
+    //     }
+    // }
 
-    const handleClick = (e) => {
-        if(!press)
-            e.preventDefault();
-        setPress(press ? false : true);
-    }
-
-    function handleSubmit (event) {  
-        event.preventDefault();
-        let form = event.target;
-        let email = form.email.value;
-        email = email.replace("@","%40");
-        console.log(email);
-
-        fetch(`http://localhost:5000/Projects/apply?EmailAndText=${email};${form.messageBox.value}`, {})
-        console.log("EmailSent");
-        setPress(press ? false : true);
-      }
-
-    const renderButton = () => {
-        if(press)
-        {
-            return (
-                <div>
-                    <form onSubmit={handleSubmit} method="GET">
-                        <div className = 'input' name='message'>
-                            <textarea name="messageBox" defaultValue ={message}/>
-                        </div>
-                        <div>
-                            <input name="email" value="bulbas.danil@gmail.com" style={{display:"none"}}></input>
-                        </div>
-                        <div className='apply'>
-                            <button type='submit'>Send</button>
-                        </div>
-                    </form>
-                </div>
-            )
-        }
-        else 
-        {
-            return (
-                    <div className='apply'>
-                        <button onClick = {handleClick}>Register for course</button>
-                    </div>
-                )
-        }
-    }
-
-    // if(prop.students.includes(localStorage.getItem("UserId")))
+    
 
     return (
-        <div className='outer'>
+        <div id="my-class" className='outer'>
             <div className="border title">
                 <h1>{prop.lesson.name}</h1>
             </div>
@@ -71,11 +31,13 @@ export const ClassTile = (prop) => {
                 <h2>{prop.lesson.description}</h2>
             </div>
             
-            <div className = "students">
-                <img src={photo} alt="kreepochek"/>
-                <img src={photo} alt="kreepochek"/>
-                <img src={photo} alt="kreepochek"/>
-
+            
+            <div className="students">
+            {prop.lesson.students.slice(0, 5).map((student, index) => {
+                return (
+                    <img key={index} src={photo} alt="kreepochek"/>
+                );
+            })}
             </div>
 
             <div className="apply">

@@ -7,7 +7,6 @@ export const SearchBarClasses = ({ updateParentState }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     let form = event.target;
-    console.log("13")
     updateParentState(form.searchstr.value);
   };
 

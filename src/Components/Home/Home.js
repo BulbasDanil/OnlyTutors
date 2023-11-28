@@ -43,23 +43,35 @@ export const Home = () => {
       <div className="content">
         <SearchBarClasses updateParentState={updateParentState}/>
         <div className="projects">
-            {lesson.map((item) => {
-              return (
-                <div class = "item">
-                  <ClassTile lesson={item}/>
-                </div>
-              )
-            })}
+            { 
+              (lesson.length !== 0) &&
+                lesson.map((item) => {
+                  if (item.students !==0 && item.students.some(user => user.id === 131)) {
+                    return (
+                      <div class = "new-color item">
+                        <ClassTile lesson={item}/>
+                      </div>
+                    )
+                  } else {
+                    return (
+                      <div class = "item">
+                        <ClassTile lesson={item}/>
+                      </div>
+                    )
+                  }
+              })
+            }
+            
           
-          <div className = "item">
-            <ClassTile lesson = {{name: 'Database Design', description: 'This course covers the fundamentals and applications of database management systems, including data models, relational database design, query languages, and web-based database applications.'}}/>
+          {/* <div className = "item">
+            <ClassTile lesson = {{students: [], name: 'Database Design', description: 'This course covers the fundamentals and applications of database management systems, including data models, relational database design, query languages, and web-based database applications.'}}/>
           </div> 
           <div className = "item">
-            <ClassTile lesson = {{name: 'Database Design', description: 'This course covers the fundamentals and applications of database management systems, including data models, relational database design, query languages, and web-based database applications.'}}/>
+            <ClassTile lesson = {{students: [], name: 'Database Design', description: 'This course covers the fundamentals and applications of database management systems, including data models, relational database design, query languages, and web-based database applications.'}}/>
           </div> 
           <div className = "item">
-            <ClassTile lesson = {{name: 'Database Design', description: 'This course covers the fundamentals and applications of database management systems, including data models, relational database design, query languages, and web-based database applications.'}}/>
-          </div> 
+            <ClassTile lesson = {{students: [], name: 'Database Design', description: 'This course covers the fundamentals and applications of database management systems, including data models, relational database design, query languages, and web-based database applications.'}}/>
+          </div>  */}
           
         </div>
       </div>
