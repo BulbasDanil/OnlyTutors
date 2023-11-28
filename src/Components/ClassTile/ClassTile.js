@@ -54,6 +54,8 @@ export const ClassTile = (prop) => {
         }
     }
 
+    // if(prop.students.includes(localStorage.getItem("UserId")))
+
     return (
         <div className='outer'>
             <div className="border title">

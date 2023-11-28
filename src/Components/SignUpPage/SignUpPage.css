@@ -11,7 +11,8 @@
 }
 
 .signup {
-    margin-top: 2.5vh;
+    margin-top: 1.7vh;
+    height: 8vh;
     width: 25vw;
     overflow: hidden;
     display: flex;
@@ -20,7 +21,7 @@
 }
 
 .signup input {
-    height: 70%;
+    height: 1.5vh;
     padding: 1vh;
     margin-right: 1vw;
 }

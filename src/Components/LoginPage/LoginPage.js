@@ -51,9 +51,9 @@ export const LoginPage = () => {
     <div className='columns'>
         <div className='row1'>
           
-          <div className='logo-image'>
+          {/* <div className='logo-image'>
             <img src={logo} alt='OnlyTutors logo'/>
-          </div>
+          </div> */}
           <form onSubmit={handleSubmit} method='POST' action='http://localhost:5000/users/'>
             <div className='item username login'>
                 <h2>Email:</h2>

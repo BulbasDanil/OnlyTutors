@@ -52,7 +52,7 @@ export const SignUpPage = () => {
             email: event.target.email.value,
             phoneNumber: event.target.phone.value,
             password: hash_password(event.target.password.value),
-            dateOfBirth:"1980-01-02T00:00:00",
+            dateOfBirth:event.target.dateOfBirth.value,
             rating:0.0,
             imagePath:"default",
             highestLevelOfEducation: "",
@@ -74,7 +74,7 @@ export const SignUpPage = () => {
             email: event.target.email.value,
             phoneNumber: event.target.phone.value,
             password: hash_password(event.target.password.value),
-            dateOfBirth:"1980-01-02T00:00:00",
+            dateOfBirth:event.target.dateOfBirth.value,
             rating:0.0,
             imagePath:"default",
             description: "",
@@ -89,9 +89,6 @@ export const SignUpPage = () => {
     <div className='columns'>
         <div className='row1'>
           
-          <div className='logo-image'>
-            <img src={logo} alt='Find-a-Bull logo'/>
-          </div>
           <form onSubmit={handleSubmit}>
 
             <div className='item signup username'>
@@ -101,7 +98,12 @@ export const SignUpPage = () => {
 
             <div className='item signup username'>
                 <h2>Last name:</h2>
-                <input placeholder='your Lirst name' name="lname" required></input>
+                <input placeholder='your last name' name="lname" required></input>
+            </div>
+
+            <div className='item signup username'>
+                <h2>Date of Birth:</h2>
+                <input name="dateOfBirth" type="date" required></input>
             </div>
 
             <div className='item signup username'>
