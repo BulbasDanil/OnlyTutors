@@ -4,7 +4,7 @@ import {React} from 'react';
 
 export const SearchBarClasses = ({ updateParentState }) => {
 
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     let form = event.target;
     updateParentState(form.searchstr.value);
@@ -12,7 +12,7 @@ export const SearchBarClasses = ({ updateParentState }) => {
 
 
     return (
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
           <div className="SearchBar">
             <label className="switch">
               <input type="checkbox"/>

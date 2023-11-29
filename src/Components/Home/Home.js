@@ -47,7 +47,7 @@ export const Home = () => {
             { 
               (lesson.length !== 0) &&
                 lesson.map((item) => {
-                  if (item.students !==0 && item.students.some(user => user.id === 131)) {
+                  if (item.students !==0 && item.students.some(user => user.id == localStorage.getItem("UserId"))) {
                     return (
                       <div class = "new-color item">
                         <ClassTile lesson={item}/>

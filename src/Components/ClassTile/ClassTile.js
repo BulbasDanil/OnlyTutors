@@ -8,12 +8,36 @@ export const ClassTile = (prop) => {
     
     function handleClick(event) {
         event.preventDefault();
-        fetch(`http://localhost:5000/api/users/`, {
-          method: 'GET',
+        fetch(`http://localhost:5000/api/lessons/addstudent?studentid=${localStorage.getItem("UserId")}&lessonid=${prop.lesson.id}`, {
+          method: 'POST',
           headers: {"Content-Type":'application/json'},
         });
+
+        window.location.reload();
     }
 
+    function handleClickUnregister(event) {
+        event.preventDefault();
+        fetch(`http://localhost:5000/api/lessons/removestudent?studentid=${localStorage.getItem("UserId")}&lessonid=${prop.lesson.id}`, {
+          method: 'DELETE',
+          headers: {"Content-Type":'application/json'},
+        });
+
+        window.location.reload();
+    }
+
+    function renderButton() {
+        console.log("13123", prop.lesson.students.some(user => user.id == localStorage.getItem("UserId")));
+        if (prop.lesson.students.length !== 0 && prop.lesson.students.some(user => user.id == localStorage.getItem("UserId"))) {
+            return (
+                <button onClick={handleClickUnregister}>Unregister from Class</button>
+            )
+        } else {
+            return (
+                <button onClick={handleClick}>Register for Class</button>
+            )
+        }
+    }
     
 
     return (
@@ -25,7 +49,7 @@ export const ClassTile = (prop) => {
                 <h1>{prop.lesson.subjectname}</h1>
             </div>
             <div className='border subject'>
-                <h1>{prop.lesson.time}</h1>
+                <h1>{prop.lesson.time !== undefined && (prop.lesson.time.substring(11, 16) + " " + prop.lesson.time.substring(0, 10))}</h1>
             </div>
             <div className="border description">
                 <h2>{prop.lesson.description}</h2>
@@ -41,7 +65,7 @@ export const ClassTile = (prop) => {
             </div>
 
             <div className="apply">
-                <button onClick={handleClick}>Register for Class</button>
+                { renderButton()}
             </div>
         </div>
     )

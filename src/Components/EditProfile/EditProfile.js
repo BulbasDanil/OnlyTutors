@@ -8,7 +8,7 @@ export const EditProfile = (props) => {
     
 
     function handleSubmit (event) {  
-        
+        event.preventDefault();
         let form = event.target;
         if(localStorage.getItem('UserType') === "student") {
             fetch('http://localhost:5000/api/students', {
@@ -16,26 +16,25 @@ export const EditProfile = (props) => {
               headers: {"Content-Type":'application/json'},
               body: JSON.stringify({name:form.firstName.value,
                                     surname: form.lastName.value,
-                                    email: form.email.value,
                                     phoneNumber: form.phoneNumber.value,
-                                    dateOfBirth: form.dateOfBirth.value,
                                     highestLevelOfEducation: form.highestLevelOfEducation.value,
+                                    id: localStorage.getItem("UserId"),
                 })
             })
         } else if(localStorage.getItem('UserType') === "tutor") {
-            fetch('http://localhost:5000/api/turors', {
+            fetch('http://localhost:5000/api/tutors', {
               method: 'PUT',
               headers: {"Content-Type":'application/json'},
               body: JSON.stringify({name: form.firstName.value,
                                     surname: form.lastName.value,
-                                    email: form.email.value,
                                     phoneNumber: form.phoneNumber.value,
-                                    dateOfBirth: form.dateOfBirth.value,
                                     description: form.description.value,
                                     experience: form.experience.value,
+                                    id: localStorage.getItem("UserId"),
                 })
             })
         }
+        window.location.reload();
     }
 
 
@@ -69,32 +68,26 @@ export const EditProfile = (props) => {
                     
                     <div className='email-textarea short'>
                         <label hlmlfor="FirstName">Your First Name:</label>
-                        <textarea id='FirstName' placeholder={props.data.firstName} name="firstName" 
+                        <textarea id='FirstName' placeholder={props.data.name} name="firstName" 
                                     required rows = {1} cols ={45} maxLength={25}></textarea>
                     </div>
                     
                     <div className='email-textarea short'>
                         <label hlmlfor="LastName">Your Last Name:</label>
-                        <textarea id='LastName' placeholder={props.data.lastName} name="lastName" 
+                        <textarea id='LastName' placeholder={props.data.surname} name="lastName" 
                                     required rows = {1} cols ={45} maxLength={25}></textarea>
                     </div>
 
-                    <div className='dob-textarea short'>
+                    {/* <div className='dob-textarea short'>
                         <label hlmlfor="dob">Your Date of Birth:</label>
                         <input id='dob' placeholder={props.data.dob} name="dob" type = "date" required></input>
-                    </div>
+                    </div> */}
 
                     <div className='phone-textarea short'>
                         <label hlmlfor="phone">Your Phone Number:</label>
                         <input id='phone' placeholder={props.data.phoneNumber} name="phoneNumber" type = "tel" required></input>
                     </div>
                     
-                    {(localStorage.getItem('UserType') === "student") && 
-                        (<div className='email-textarea short'>
-                            <label hlmlfor="email">Your Email:</label>
-                            <input id='email' placeholder={props.data.email} name="email" type = "email" required></input>
-                        </div>
-                    )}
 
                     {(localStorage.getItem('UserType') === "student") && 
                         (<div className='email-textarea short'>

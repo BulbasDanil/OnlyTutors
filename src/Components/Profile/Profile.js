@@ -71,7 +71,7 @@ export const Profile = ({location}) => {
                     <h2>Date of Birth:</h2>
                   </td>
                   <td>
-                    <h2>{data.dateOfBirth}</h2>
+                    <h2>{data.dateOfBirth !== undefined && data.dateOfBirth.substring(0, 10)}</h2>
                   </td>
                 </tr>
               </table>
@@ -94,7 +94,6 @@ export const Profile = ({location}) => {
   }
 
 
-
   return (
       <div className='columns'>
         <div className='row1'>
@@ -109,14 +108,15 @@ export const Profile = ({location}) => {
 
           {(localStorage.getItem('UserType') === "tutor") && 
             (<div className='item profile-contact'>
-              <h2>Contacts:<br/>Email: {data.email}<br/> Phone: {data.phone}<br/> Date of Birth: {data.dateOfBirth} <br/> </h2>
+              <h2>Contacts:<br/>Email: {data.email}<br/> Phone: {data.phoneNumber}<br/> Date of Birth: {data.dateOfBirth !== undefined && data.dateOfBirth.substring(0, 10)} <br/> </h2>
             </div>)
           }
         </div>
         <div className='row2'>
           {displayInfo()}
         </div>
-        {(localStorage.getItem('UserType') === "tutor" || localStorage.getItem('UserType') === "student") && 
+        {
+        (localStorage.getItem('UserId') == data.id) &&
             (<div className='new-project'>
             <EditProfile data={data}/>
           </div>

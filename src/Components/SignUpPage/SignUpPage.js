@@ -92,12 +92,12 @@ export const SignUpPage = () => {
           <form onSubmit={handleSubmit}>
 
             <div className='item signup username'>
-                <h2>First name:</h2>
+                <h2>Name:</h2>
                 <input placeholder='your first name' name="fname" required></input>
             </div>
 
             <div className='item signup username'>
-                <h2>Last name:</h2>
+                <h2>Surname:</h2>
                 <input placeholder='your last name' name="lname" required></input>
             </div>
 
