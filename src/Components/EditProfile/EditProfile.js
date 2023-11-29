@@ -10,11 +10,32 @@ export const EditProfile = (props) => {
     function handleSubmit (event) {  
         
         let form = event.target;
-        fetch('http://localhost:5000/Users/update', {
-          method: 'POST',
-          headers: {"Content-Type":'application/json'},
-          body: JSON.stringify({username:form.username.value,firstName: form.firstName.value,email: localStorage.getItem("email"), lastName: form.lastName.value, bio: form.bio.value, phone: form.phone.value, linkedIn: form.linkedIn.value, gitHub: form.gitHub.value, experience: form.experience.value})
-        })
+        if(localStorage.getItem('UserType') === "student") {
+            fetch('http://localhost:5000/api/students', {
+              method: 'PUT',
+              headers: {"Content-Type":'application/json'},
+              body: JSON.stringify({name:form.firstName.value,
+                                    surname: form.lastName.value,
+                                    email: form.email.value,
+                                    phoneNumber: form.phoneNumber.value,
+                                    dateOfBirth: form.dateOfBirth.value,
+                                    highestLevelOfEducation: form.highestLevelOfEducation.value,
+                })
+            })
+        } else if(localStorage.getItem('UserType') === "tutor") {
+            fetch('http://localhost:5000/api/turors', {
+              method: 'PUT',
+              headers: {"Content-Type":'application/json'},
+              body: JSON.stringify({name: form.firstName.value,
+                                    surname: form.lastName.value,
+                                    email: form.email.value,
+                                    phoneNumber: form.phoneNumber.value,
+                                    dateOfBirth: form.dateOfBirth.value,
+                                    description: form.description.value,
+                                    experience: form.experience.value,
+                })
+            })
+        }
     }
 
 
@@ -64,31 +85,52 @@ export const EditProfile = (props) => {
                     </div>
 
                     <div className='phone-textarea short'>
-                        <label hlmlfor="phone">Phone Number:</label>
-                        <textarea id='phone' placeholder={props.data.phone} name="phone" 
-                                    required rows = {1} cols ={45} maxLength={25}></textarea>
+                        <label hlmlfor="phone">Your Phone Number:</label>
+                        <input id='phone' placeholder={props.data.phoneNumber} name="phoneNumber" type = "tel" required></input>
                     </div>
                     
-                    <div className='specialty-textarea short'>
-                        <label hlmlfor="specialty">Your Specialty:</label>
-                        <textarea id='specialty' placeholder={props.data.specialty} name="specialty" 
-                                   required rows = {1} cols ={45} maxLength={40}></textarea>
-                    </div>
+                    {(localStorage.getItem('UserType') === "student") && 
+                        (<div className='email-textarea short'>
+                            <label hlmlfor="email">Your Email:</label>
+                            <input id='email' placeholder={props.data.email} name="email" type = "email" required></input>
+                        </div>
+                    )}
+
+                    {(localStorage.getItem('UserType') === "student") && 
+                        (<div className='email-textarea short'>
+                            <label hlmlfor="highestLevelOfEducation">Your Education:</label>
+                            <textarea id='highestLevelOfEducation' placeholder={props.data.highestLevelOfEducation} name="highestLevelOfEducation" 
+                                    required rows = {1} cols ={45} maxLength={25}></textarea>
+                        </div>
+                    )}
+                    
                     <div className='submit-button-container'>
                         <button type='submit' className="submit-button">Submit changes</button> 
                     </div>
+
+                    {(localStorage.getItem('UserType') === "tutor") && 
+                        (<div className='phone-textarea short'>
+                        <label hlmlfor="phone">Phone Number:</label>
+                            <textarea id='phone' placeholder={props.data.phone} name="phone" 
+                                    required rows = {1} cols ={45} maxLength={25}></textarea>
+                        </div>  
+                    )}
                     
-                    <div className='bio-textarea'>
-                        <label hlmlfor="bio">Tell us about yourself</label>
-                        <textarea id='bio' placeholder={props.data.bio} name="bio" 
-                                    required rows = {4} cols ={55} maxLength={400}></textarea>
-                    </div>
+                    {(localStorage.getItem('UserType') === "tutor") && 
+                        (<div className='bio-textarea'>
+                            <label hlmlfor="description">Tell us about yourself</label>
+                            <textarea id='description' placeholder={props.data.description} name="description" 
+                                        required rows = {4} cols ={55} maxLength={400}></textarea>
+                        </div>
+                    )}
                     
-                    <div className='experience-textarea'>
-                        <label hlmlfor="experience">Tell us about your experience</label>
-                        <textarea id='experience' placeholder={props.data.experience} name="experience" 
-                                    required rows = {6} cols ={55} maxLength={400}></textarea>
-                    </div>
+                    {(localStorage.getItem('UserType') === "tutor") && 
+                        (<div className='experience-textarea'>
+                            <label hlmlfor="experience">Tell us about your experience</label>
+                            <textarea id='experience' placeholder={props.data.experience} name="experience" 
+                                        required rows = {6} cols ={55} maxLength={400}></textarea>
+                        </div>)
+                    }
                 </form>
             </div> 
         </div>

@@ -22,7 +22,9 @@ export const TutorTile = (prop) => {
             </div>
             
             <div className="apply">
-                <NavLink to='/profile'>
+                <NavLink to={{ pathname: '/profile', state: { user : { type: "tutor",
+                                                                id: prop.tutor.userid, 
+                                                                } }} }>
                     <button onClick={handleClick} >View Tutor's Full Profile</button>
                 </NavLink>
             </div>

@@ -38,6 +38,7 @@ export const LoginPage = () => {
                 localStorage.setItem("UserType",responseJson.userType);
                 localStorage.setItem("ProfileId",responseJson.userId);
                 history.push("/home");
+                window.location.reload();
             }
             else
             {
@@ -54,7 +55,7 @@ export const LoginPage = () => {
           {/* <div className='logo-image'>
             <img src={logo} alt='OnlyTutors logo'/>
           </div> */}
-          <form onSubmit={handleSubmit} method='POST' action='http://localhost:5000/users/'>
+          <form onSubmit={handleSubmit}>
             <div className='item username login'>
                 <h2>Email:</h2>
                 <input placeholder='your email adress' name="email" type="email" required></input>

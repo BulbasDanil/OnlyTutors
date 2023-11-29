@@ -4,15 +4,15 @@ import photo from '../files/Default_pfp.png';
 
 export const ClassTile = (prop) => {
     const [press, setPress] = useState(false);
-
     
-    // if(prop.lesson.students.some(user => user.id === localStorage.getItem("UserId"))) {
-    // function checkMyClass() {
-    //     if(prop.lesson.students.some(user => user.id === 131)) {
-    //         console.log("class changed");
-    //         document.getElementById("my-class").style.backgroundColor = "red";
-    //     }
-    // }
+    
+    function handleClick(event) {
+        event.preventDefault();
+        fetch(`http://localhost:5000/api/users/`, {
+          method: 'GET',
+          headers: {"Content-Type":'application/json'},
+        });
+    }
 
     
 
@@ -35,13 +35,13 @@ export const ClassTile = (prop) => {
             <div className="students">
             {prop.lesson.students.slice(0, 5).map((student, index) => {
                 return (
-                    <img key={index} src={photo} alt="kreepochek"/>
+                    <img key={index} src={student.imagePath} alt="kreepochek"/>
                 );
             })}
             </div>
 
             <div className="apply">
-                <button>Register for Class</button>
+                <button onClick={handleClick}>Register for Class</button>
             </div>
         </div>
     )

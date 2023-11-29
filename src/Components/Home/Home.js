@@ -5,6 +5,7 @@ import {NewProject} from '../NewClass/NewClass';
 import {React, useState, useEffect} from 'react';
 
 export const Home = () => {
+
   localStorage.setItem("ProfileId", localStorage.getItem("UserId"));
   const [lesson, setLessons] = useState([]);
   

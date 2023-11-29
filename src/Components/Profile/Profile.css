@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+  height: 40vh;
 }
 
 .profile-image img {
@@ -85,4 +86,14 @@
   width: 29.9vw;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.smaller h2{
+  font-size: 1em;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  margin-left: 2vw;
 }

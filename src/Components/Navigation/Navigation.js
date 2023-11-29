@@ -4,6 +4,7 @@ import {ProfilePicture} from '../ProfilePicture/ProfilePicture';
 import {NavLink} from "react-router-dom";
 
 export const Navigation = () => {
+
   return (
       <div className="nav">
         <div className="nav-item">
@@ -25,7 +26,9 @@ export const Navigation = () => {
         </div>
 
         <div className="nav-item">
-          <NavLink to='/profile'>
+          <NavLink to={{ pathname: '/profile', state: { user : { type: localStorage.getItem("UserType"),
+                                                                id: localStorage.getItem("UserId"), 
+                                                                } }} }>
             <div className='profile'>
               <ProfilePicture />
             </div>
