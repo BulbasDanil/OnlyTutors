@@ -1,6 +1,7 @@
 import './ClassTile.css';
 import {React, useState} from 'react';
 import photo from '../files/Default_pfp.png';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const ClassTile = (prop) => {
     const [press, setPress] = useState(false);
@@ -27,7 +28,6 @@ export const ClassTile = (prop) => {
     }
 
     function renderButton() {
-        console.log("13123", prop.lesson.students.some(user => user.id == localStorage.getItem("UserId")));
         if (prop.lesson.students.length !== 0 && prop.lesson.students.some(user => user.id == localStorage.getItem("UserId"))) {
             return (
                 <button onClick={handleClickUnregister}>Unregister from Class</button>
@@ -59,13 +59,18 @@ export const ClassTile = (prop) => {
             <div className="students">
             {prop.lesson.students.slice(0, 5).map((student, index) => {
                 return (
-                    <img key={index} src={student.imagePath} alt="kreepochek"/>
+                    <NavLink to={{ pathname: '/profile', state: { user : { type: "student",
+                                                                id: student.id, 
+                                                                } }} }>
+                        <img key={index} src={student.imagePath} alt="avatar"/>
+                    </NavLink>
+                    
                 );
             })}
             </div>
 
             <div className="apply">
-                { renderButton()}
+                { (localStorage.getItem("UserType") === 'student') && renderButton()}
             </div>
         </div>
     )

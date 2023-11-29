@@ -23,9 +23,11 @@ export const Home = () => {
     })
     }, [])
   
-    const updateParentState = (str) => {
-      console.log("str")
-      fetch(`http://localhost:5000/api/lessons/search/${str}`,{
+    const updateParentState = (obj) => {
+      var check = 0;
+      if (obj.open)
+        check = 1;
+      fetch(`http://localhost:5000/api/lessons/search/${obj.str}/${check}`,{
       method: "GET"
     }).then(response => {
       return response.json()

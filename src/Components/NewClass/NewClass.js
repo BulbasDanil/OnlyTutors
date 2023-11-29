@@ -1,5 +1,5 @@
 import './NewClass.css';
-import {React, useState} from 'react';
+import {React, useState, useEffect } from 'react';
 
 const all_options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -13,7 +13,26 @@ const all_options = [
 
 
 export const NewProject = () => {
+    const [options, setOptions] = useState([]);
     const [option, setOption] = useState([]);
+
+    useEffect(() => {
+        
+        fetch(`http://localhost:5000/api/subjects`).then(response => {
+            return response.json()
+          }).then(jsonResponse => {
+            if(!jsonResponse) {
+              return [];
+          }
+          else
+          setOptions(jsonResponse);
+          
+        })
+      }, []);
+
+      const handleChange = (event) => {
+        setOption(event.target.value);
+      };
 
 
     const openWindow = () => {
@@ -39,17 +58,13 @@ export const NewProject = () => {
             name:form.name.value,
             description: form.description.value,
             // subject: form.selectedSubject.value,
-            subjectId: 1,
+            subjectId: option,
             time: form.date.value,
             tutorid: parseInt(localStorage.getItem("UserId"), 10),
         }),
         })
       }
 
-    const subjectOptions = [
-        'Programming', 'Calculus', 'English', 'Statistics', 'Chemistry',
-        'Physics'
-    ];
 
     return (
         <div>
@@ -71,10 +86,10 @@ export const NewProject = () => {
                     </div>
                     <div className="select-container">
                         <label>What is the subject of the class?</label>
-                            <select name="selectedSubject">
-                                {subjectOptions.map((subject) => (
-                                    <option key={subject} value={subject}>
-                                    {subject}
+                            <select name="selectedSubject" onChange={handleChange}>
+                                {options.map((subject) => (
+                                    <option id={subject.id} value={subject.id}>
+                                    {subject.name}
                                     </option>
                                 ))}
                             </select>
@@ -90,7 +105,7 @@ export const NewProject = () => {
                                     required rows = {6} cols ={55} maxLength={400}></textarea>
                     </div>
                     
-                    <select multiple={true} value={option} style={{display: 'none'}}/>
+                    
                     <div className='submit-button-container'>
                         <button type='submit' className="submit-button">Create your class</button> 
                     </div>

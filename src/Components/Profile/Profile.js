@@ -8,8 +8,6 @@ export const Profile = ({location}) => {
 
 
   useEffect(() => {
-    console.log("userid=", user.id);
-    console.log("usertype=", user.type);
     fetch(`http://localhost:5000/api/${user.type+"s"}/${user.id}`).then(response => {
         return response.json()
       }).then(jsonResponse => {

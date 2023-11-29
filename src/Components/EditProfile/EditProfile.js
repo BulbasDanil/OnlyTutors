@@ -68,13 +68,13 @@ export const EditProfile = (props) => {
                     
                     <div className='email-textarea short'>
                         <label hlmlfor="FirstName">Your First Name:</label>
-                        <textarea id='FirstName' placeholder={props.data.name} name="firstName" 
+                        <textarea id='FirstName' defaultValue={props.data.name} name="firstName" 
                                     required rows = {1} cols ={45} maxLength={25}></textarea>
                     </div>
                     
                     <div className='email-textarea short'>
                         <label hlmlfor="LastName">Your Last Name:</label>
-                        <textarea id='LastName' placeholder={props.data.surname} name="lastName" 
+                        <textarea id='LastName' defaultValue={props.data.surname} name="lastName" 
                                     required rows = {1} cols ={45} maxLength={25}></textarea>
                     </div>
 
@@ -85,14 +85,14 @@ export const EditProfile = (props) => {
 
                     <div className='phone-textarea short'>
                         <label hlmlfor="phone">Your Phone Number:</label>
-                        <input id='phone' placeholder={props.data.phoneNumber} name="phoneNumber" type = "tel" required></input>
+                        <input id='phone' defaultValue={props.data.phoneNumber} name="phoneNumber" type = "tel" required></input>
                     </div>
                     
 
                     {(localStorage.getItem('UserType') === "student") && 
                         (<div className='email-textarea short'>
                             <label hlmlfor="highestLevelOfEducation">Your Education:</label>
-                            <textarea id='highestLevelOfEducation' placeholder={props.data.highestLevelOfEducation} name="highestLevelOfEducation" 
+                            <textarea id='highestLevelOfEducation' defaultValue={props.data.highestLevelOfEducation} name="highestLevelOfEducation" 
                                     required rows = {1} cols ={45} maxLength={25}></textarea>
                         </div>
                     )}
@@ -101,18 +101,18 @@ export const EditProfile = (props) => {
                         <button type='submit' className="submit-button">Submit changes</button> 
                     </div>
 
-                    {(localStorage.getItem('UserType') === "tutor") && 
+                    {/* {(localStorage.getItem('UserType') === "tutor") && 
                         (<div className='phone-textarea short'>
                         <label hlmlfor="phone">Phone Number:</label>
-                            <textarea id='phone' placeholder={props.data.phone} name="phone" 
+                            <textarea id='phone' defaultValue={props.data.phone} name="phone" 
                                     required rows = {1} cols ={45} maxLength={25}></textarea>
                         </div>  
-                    )}
+                    )} */}
                     
                     {(localStorage.getItem('UserType') === "tutor") && 
                         (<div className='bio-textarea'>
                             <label hlmlfor="description">Tell us about yourself</label>
-                            <textarea id='description' placeholder={props.data.description} name="description" 
+                            <textarea id='description' defaultValue={props.data.description} name="description" 
                                         required rows = {4} cols ={55} maxLength={400}></textarea>
                         </div>
                     )}
@@ -120,7 +120,7 @@ export const EditProfile = (props) => {
                     {(localStorage.getItem('UserType') === "tutor") && 
                         (<div className='experience-textarea'>
                             <label hlmlfor="experience">Tell us about your experience</label>
-                            <textarea id='experience' placeholder={props.data.experience} name="experience" 
+                            <textarea id='experience' defaultValue={props.data.experience} name="experience" 
                                         required rows = {6} cols ={55} maxLength={400}></textarea>
                         </div>)
                     }

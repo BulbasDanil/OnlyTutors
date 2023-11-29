@@ -24,7 +24,6 @@ export const TutorsPage = () => {
   }, [])
 
   const updateParentState = (str) => {
-    console.log("str")
     fetch(`http://localhost:5000/tutors/search/${str}`,{
     method: "GET"
   }).then(response => {

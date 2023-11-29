@@ -57,7 +57,7 @@ export const SignUpPage = () => {
             imagePath:"default",
             highestLevelOfEducation: "",
           }),
-        }).then(response => response.json()).then(responseJson =>  {    
+        }).then(responseJson =>  {    
             history.push("/");
         });
     }
@@ -80,7 +80,8 @@ export const SignUpPage = () => {
             description: "",
             experience: "",
           }),
-        }).then(response => response.json()).then(responseJson =>  {    
+        }).then(responseJson =>  {  
+            console.log("1");  
             history.push("/");
         });
     }
