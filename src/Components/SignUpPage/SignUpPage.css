@@ -1,14 +1,4 @@
-.logo-image img {
-    width: 19.9vw;
-    border: black 1px solid;
-}
 
-.logo-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden
-}
 
 .signup {
     margin-top: 1.7vh;

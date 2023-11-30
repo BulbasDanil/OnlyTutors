@@ -51,16 +51,6 @@ export const TutorsPage = () => {
               )
             })}
           
-          {/* <div className = "item">
-            <TutorTile tutor = {{name: 'Yaroslav ZZZ', photo: {profile_pic}, description: 'proper evening routine with bong fifa chess and weed 69$/gramm'}}/>
-          </div> 
-          <div className = "item">
-            <TutorTile tutor = {{name: 'Sex instructor', userid: 101, photo: {profile_pic}, description: 'Podnyal pripodnyal vzyal za ruku opustil podoshel pripodnyal vzyal podnyal'}}/>
-          </div> 
-          <div className = "item">
-            <TutorTile tutor = {{name: 'curse 666', photo: profile_pic, description: 'a mozhno zaiti k tebe v kvartiry: yes or yes'}}/>
-          </div>  */}
-          
         </div>
       </div>
     </div>

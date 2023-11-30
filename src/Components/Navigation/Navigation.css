@@ -1,16 +1,11 @@
-.logomain {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  height: 8vh;
-}
+
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #00b8ff;
-  height: 8vh;
+  height: 10vh;
   width: 100vw;
   position: fixed;
   text-align: center;
@@ -33,7 +28,7 @@
 }
 
 .nav-item a {
-  font-size: 3.5vh;
+  font-size: 4vh;
   margin-left: 0.7vw;
   margin-right: -0.3vw;
   font-weight: bold;
@@ -49,4 +44,10 @@
   display: flex;
   justify-content: start;
   width: 33vw;
+}
+
+.nav-item img {
+  margin-bottom: 1vh;
+  margin-right: 3.5vw;
+  height: 12vh;
 }

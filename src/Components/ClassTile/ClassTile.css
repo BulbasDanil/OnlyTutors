@@ -123,7 +123,7 @@ button {
 .students img {
     border: black 2px solid;
     background-color: white;
-    width: 10%;
+    width: 3vw;
     object-fit: cover;
     object-position: center;
     margin-left: 0.3vw;

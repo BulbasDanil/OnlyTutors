@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const LoginPage = () => {
     const history = useHistory();
-
+    localStorage.setItem("UserType", "undefined");
     function hash_password(password) {
       let hash = 0;
 
@@ -47,14 +47,14 @@ export const LoginPage = () => {
                 
         });
     }
-
+  
   return (
     <div className='columns'>
         <div className='row1'>
           
-          {/* <div className='logo-image'>
+          <div className='logo-image'>
             <img src={logo} alt='OnlyTutors logo'/>
-          </div> */}
+          </div>
           <form onSubmit={handleSubmit}>
             <div className='item username login'>
                 <h2>Email:</h2>

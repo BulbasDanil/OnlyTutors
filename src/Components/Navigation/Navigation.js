@@ -1,12 +1,14 @@
 import './Navigation.css';
-import logomain from '../files/logo_main.bmp';
+import topbar from '../files/topbar.png';
 import {ProfilePicture} from '../ProfilePicture/ProfilePicture';
 import {NavLink} from "react-router-dom";
 
 export const Navigation = () => {
-
+  
   return (
       <div className="nav">
+        {(localStorage.getItem("UserType") !== "undefined") &&
+        (
         <div className="nav-item">
           <div>
             <NavLink to='/home'>
@@ -19,13 +21,14 @@ export const Navigation = () => {
                 <a style={{textDecoration: 'none'}}>Tutors</a>
             </NavLink>
           </div>
-        </div>
+        </div>)}
 
         <div className="nav-item">
-          <h1>OnlyTutors</h1>
+            <img src={topbar} alt='OnlyTutors logo'/>
         </div>
 
-        <div className="nav-item">
+        {(localStorage.getItem("UserType") !== "undefined") &&
+        (<div className="nav-item">
           <NavLink to={{ pathname: '/profile', state: { user : { type: localStorage.getItem("UserType"),
                                                                 id: localStorage.getItem("UserId"), 
                                                                 } }} }>
@@ -33,7 +36,7 @@ export const Navigation = () => {
               <ProfilePicture />
             </div>
           </NavLink>
-        </div>
+        </div>)}
 
         
       </div>

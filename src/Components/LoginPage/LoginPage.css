@@ -1,13 +1,14 @@
 .logo-image img {
-    width: 19.9vw;
-    border: black 1px solid;
+    width: 100%;
+    /* border: black 1px solid; */
 }
 
 .logo-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    
+    width: 15vw;
 }
 
 .login {

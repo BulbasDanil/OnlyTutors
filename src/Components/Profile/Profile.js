@@ -22,7 +22,7 @@ export const Profile = ({location}) => {
 
 
   const displayInfo = () => {
-    if(localStorage.getItem('UserType') === "tutor") {
+    if(localStorage.getItem('UserType') === "tutor" || user.type === "tutor") {
       return (
       <div>
         <div className='item profile-description'>
@@ -104,7 +104,7 @@ export const Profile = ({location}) => {
             <h2>{(data.name + " " + data.surname)}</h2>
           </div>
 
-          {(localStorage.getItem('UserType') === "tutor") && 
+          {(localStorage.getItem('UserType') === "tutor"|| user.type === "tutor") && 
             (<div className='item profile-contact'>
               <h2>Contacts:<br/>Email: {data.email}<br/> Phone: {data.phoneNumber}<br/> Date of Birth: {data.dateOfBirth !== undefined && data.dateOfBirth.substring(0, 10)} <br/> </h2>
             </div>)

@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 export const SignUpPage = () => {
     const history = useHistory();
     var type = "";
+    localStorage.setItem("UserType", "undefined");
 
     function setStudent() {
       type = "student";
@@ -54,14 +55,15 @@ export const SignUpPage = () => {
             password: hash_password(event.target.password.value),
             dateOfBirth:event.target.dateOfBirth.value,
             rating:0.0,
-            imagePath:"default",
+            imagePath:"https://onlytutors/default/student.png",
             highestLevelOfEducation: "",
           }),
         }).then(responseJson =>  {    
             history.push("/");
+            window.location.reload();
         });
     }
-
+    
     function handleSubmitTutor (event) {
         event.preventDefault();
 
@@ -76,7 +78,7 @@ export const SignUpPage = () => {
             password: hash_password(event.target.password.value),
             dateOfBirth:event.target.dateOfBirth.value,
             rating:0.0,
-            imagePath:"default",
+            imagePath:"https://onlytutors/default/tutor.png",
             description: "",
             experience: "",
           }),
